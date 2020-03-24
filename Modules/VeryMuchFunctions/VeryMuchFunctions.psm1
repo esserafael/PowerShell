@@ -303,8 +303,6 @@ function Remove-StringDiacritic
 	
 	process
 	{
-		$NormalizedString = $String.Normalize([Text.NormalizationForm]::FormD)
-		
 		$StringBuilder = New-Object Text.StringBuilder
 		
 		($String.Normalize([Text.NormalizationForm]::FormD)).ToCharArray() | ForEach-Object {
@@ -462,7 +460,7 @@ function Write-Log
 			
 			if ($Host.Name -ne "ConsoleHost")
 			{
-				if ($HostInvocation -ne $null)
+				if ($null -ne $HostInvocation)
 				{
 					$ScriptPath = Split-Path $HostInvocation.MyCommand.Path
 					$ScriptName = (($HostInvocation.MyCommand.Name).Split("."))[0]
