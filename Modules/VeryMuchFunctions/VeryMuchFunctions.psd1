@@ -2,11 +2,11 @@
 	===========================================================================
 	 Created on:   	29/10/2019 09:48
 	 Created by:   	Rafael Alexandre Feustel Gustmann - esserafael@gmail.com
-	 Filename:     	VeryMuchFunctions2.psd1
+	 Filename:     	VeryMuchFunctions.psd1
 	 -------------------------------------------------------------------------
 	 Module Manifest
 	-------------------------------------------------------------------------
-	 Module Name: VeryMuchFunctions2
+	 Module Name: VeryMuchFunctions
 	===========================================================================
 #>
 
@@ -23,7 +23,7 @@
 	GUID = 'f4c2f5df-625b-4f15-af72-fbd3d8b534ff'
 	
 	# Author of this module
-	Author = '07574534900'
+	Author = 'Rafael Alexandre Feustel Gustmann'
 	
 	# Company or vendor of this module
 	CompanyName = ''
