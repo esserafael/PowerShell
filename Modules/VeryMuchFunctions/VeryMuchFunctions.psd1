@@ -14,7 +14,7 @@
 @{
 	
 	# Script module or binary module file associated with this manifest
-	ModuleToProcess = 'VeryMuchFunctions2.psm1'
+	RootModule = 'VeryMuchFunctions2.psm1'
 	
 	# Version number of this module.
 	ModuleVersion = '1.0.5.0'
