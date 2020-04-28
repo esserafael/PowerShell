@@ -37,6 +37,7 @@ function Format-StringToTitleCase
 	
 	[CmdletBinding()]
 	[Alias("CapitalizeStuff")]
+	[OutputType([System.String])]
 	Param (
 		[Alias("Str")]
 		[Parameter(
@@ -102,6 +103,7 @@ function Get-RandomPassword
 	
 	[CmdletBinding()]
 	[Alias("Gera-Senha")]
+	[OutputType([System.String])]
 	Param (
 		[Alias("Tamanho")]
 		[Parameter(
@@ -179,8 +181,9 @@ function Remove-StringBlankSpace
 
     #>
 	
-	[CmdletBinding()]
+	[CmdletBinding()]	
 	[Alias("RemSpaces")]
+	[OutputType([System.String])]
 	Param (
 		[Alias("Str")]
 		[Parameter(
@@ -286,6 +289,7 @@ function Remove-StringDiacritic
 	
 	[CmdletBinding()]
 	[Alias("Remove-Diacritics")]
+	[OutputType([System.String])]
 	Param (
 		[Alias("Str")]
 		[Parameter(
