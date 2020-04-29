@@ -151,7 +151,7 @@ function Get-RandomPassword
 }
 
 
-function Remove-StringBlankSpace
+function ConvertTo-NonBlankSpaceString
 {
 	<#
     .SYNOPSIS
@@ -177,12 +177,12 @@ function Remove-StringBlankSpace
 			This function returns a formatted String.
 
     .EXAMPLE
-        Remove-StringBlankSpace -String "    text  with many     useless spaces   "
+        ConvertTo-NonBlankSpaceString -String "    text  with many     useless spaces   "
 
     #>
 	
 	[CmdletBinding()]	
-	[Alias("RemSpaces")]
+	[Alias("RemSpaces", "Remove-StringBlankSpace")]
 	[OutputType([System.String])]
 	Param (
 		[Alias("Str")]
