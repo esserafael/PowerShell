@@ -21,7 +21,7 @@
 	FunctionsToExport = @(
 		'Test-ADCredential'
 	)
-	CmdletsToExport = '*' 
+	CmdletsToExport = @() 
 	VariablesToExport = '*'
 	AliasesToExport = @()
 	ModuleList = @()

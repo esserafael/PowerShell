@@ -21,7 +21,7 @@
 	FunctionsToExport = @(
 		'Update-ModuleManifestVersioning'
 	)
-	CmdletsToExport = '*' 
+	CmdletsToExport = @() 
 	VariablesToExport = '*'
 	AliasesToExport = @()
 	ModuleList = @()
