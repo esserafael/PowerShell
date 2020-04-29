@@ -2,14 +2,14 @@
 function Test-ADCredential
 {
 	<#
-    .SYNOPSIS
-        Tests an Active Directory Domain or SAM credential.
-	
+	.SYNOPSIS
+		Tests an Active Directory Domain or SAM credential.
+
 	.DESCRIPTION
 		Tests an Active Directory Domain Services or Security Account Manager (SAM) credential, 
 		returning True or False if the connection and validation is successful.
 
-    .PARAMETER Credential
+	.PARAMETER Credential
 		Credential to be tested.
 		
 	.PARAMETER Context
@@ -17,19 +17,19 @@ function Test-ADCredential
 		
 	.PARAMETER ComputerName
 		The name of the domain or server.
-	
-	.PARAMETER UseSSL
-        Uses Secure Socket Layer (SSL) to encrypt the channel.
 
-    .INPUTS
-        System.Management.Automation.PSCredential
+	.PARAMETER UseSSL
+		Uses Secure Socket Layer (SSL) to encrypt the channel.
+
+	.INPUTS
+		System.Management.Automation.PSCredential
 			You can pipe PSCredentials to be tested.
 
-    .OUTPUTS
-        PSCustomObject
+	.OUTPUTS
+		PSCustomObject
 			This function returns PSCustomObjects with results.
 
-    .EXAMPLE
+	.EXAMPLE
 		Test-ADCredential -Credential $SomeCred
 	The function will test the credential '$SomeCred'.
 		
@@ -41,7 +41,7 @@ function Test-ADCredential
 		Test-ADCredential -ComputerName dc01.example.com -UseSSL
 	Will prompt for the credentials and connect to the server 'dc01.example.com' using SSL (port 636).
 
-    #>
+	#>
 	
 	[CmdletBinding()]
 	[OutputType([PSCustomObject])]
