@@ -9,7 +9,7 @@
 #>
 
 
-function Format-StringToTitleCase
+function ConvertTo-TitleCase
 {
 	<#
     .SYNOPSIS
@@ -31,12 +31,12 @@ function Format-StringToTitleCase
 			This function returns a converted String.
 
     .EXAMPLE
-        Format-StringToTitleCase -String "VeRy mESSY text THAT WILL Be formatted"
+        ConvertTo-TitleCase -String "VeRy mESSY text THAT WILL Be formatted"
 
     #>
 	
 	[CmdletBinding()]
-	[Alias("CapitalizeStuff")]
+	[Alias("CapitalizeStuff", "Format-StringToTitleCase")]
 	[OutputType([System.String])]
 	Param (
 		[Alias("Str")]
