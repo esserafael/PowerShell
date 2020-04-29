@@ -261,7 +261,7 @@ function Remove-StringBlankSpace
 }
 
 
-function Remove-StringDiacritic
+function ConvertTo-NonDiacriticalString
 {
 	<#
     .SYNOPSIS
@@ -283,12 +283,12 @@ function Remove-StringDiacritic
 			This function returns a converted String.
 
     .EXAMPLE
-        Remove-StringDiacritic -String "textão com vários sinais de acentuação"
+        ConvertTo-NonDiacriticalString -String "textão com vários sinais de acentuação"
 
     #>
 	
 	[CmdletBinding()]
-	[Alias("Remove-Diacritics")]
+	[Alias("Remove-Diacritics", "Remove-StringDiacritic")]
 	[OutputType([System.String])]
 	Param (
 		[Alias("Str")]
