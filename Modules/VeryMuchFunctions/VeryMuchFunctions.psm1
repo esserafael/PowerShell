@@ -9,148 +9,6 @@
 #>
 
 
-function ConvertTo-TitleCaseString
-{
-	<#
-    .SYNOPSIS
-        Formats a String to Title Case.
-	
-	.DESCRIPTION
-		Formats a String to Title Case.
-		Sample: "fulano de tal" will be converted to "Fulano De Tal".
-
-    .PARAMETER String
-        String which will be converted.
-
-    .INPUTS
-        System.String
-			You can pipe a String to be converted.
-
-    .OUTPUTS
-        System.String
-			This function returns a converted String.
-
-    .EXAMPLE
-        ConvertTo-TitleCaseString -String "VeRy mESSY text THAT WILL Be formatted"
-
-    #>
-	
-	[CmdletBinding()]
-	[Alias("CapitalizeStuff", "Format-StringToTitleCase")]
-	[OutputType([System.String])]
-	Param (
-		[Alias("Str")]
-		[Parameter(
-				   Position = 0,
-				   Mandatory = $true,
-				   ValueFromPipeline = $true
-				   )]
-		[System.String]$String
-	)
-	
-	begin
-	{
-		$CultureTextInfo = (Get-Culture).TextInfo
-	}
-	
-	process
-	{
-		Write-Verbose -Message "Input String: '$($String)'"
-		
-		Return [System.String]$CultureTextInfo.ToTitleCase($String.ToLower())
-	}
-	
-	end
-	{
-		
-	}
-}
-
-
-function Get-RandomPassword
-{
-	<#
-    .SYNOPSIS
-        Generates a random string of characters, useful for generating passwords.
-	
-	.DESCRIPTION
-		Generates a random string of characters,
-		Useful for generating passwords.
-		Ensures that the string will contain at least one:
-		- Upper case character;
-		- Lower case character;
-		- Digit;
-
-    .PARAMETER Size
-        The length of the character string to be generated. The default is 8 characters.
-
-    .INPUTS
-        System.Int32
-			You can specify the exact size (length) of the String to be generated.
-
-    .OUTPUTS
-		System.String
-			This function returns a random generated String, with the default or specified size.
-
-    .EXAMPLE
-		Get-RandomPassword
-		
-	.EXAMPLE
-		Get-RandomPassword -Size 16
-			Generates a String with exact 16 characters.
-			
-    #>
-	
-	[CmdletBinding()]
-	[Alias("Gera-Senha")]
-	[OutputType([System.String])]
-	Param (
-		[Alias("Tamanho")]
-		[Parameter(
-				   Position = 0
-				   )]
-		[ValidateRange(4, 100)]
-		[System.Int32]$Size = 8
-	)
-	
-	while ($Password.Length -ne $Size)
-	{
-		# Generates a single character by iteration,
-		# Can be a upper case char, lower case char or a digit
-		# Then adds to the Password String.
-		
-		if (Get-Random($true, $false))
-		{
-			$GeneratedChar = [Char](Get-Random -Minimum 97 -Maximum 122)
-			
-			if (Get-Random($true, $false))
-			{
-				$GeneratedChar = ([System.String]$GeneratedChar).ToUpper()
-			}
-		}
-		else
-		{
-			$GeneratedChar = Get-Random -Maximum 9
-		}
-		
-		[System.String]$Password += $GeneratedChar
-		
-		# Verifies that Password has all three categories of character;
-		# If not, empties the variable and starts again.
-		
-		if (
-			$Password.Length -eq $Size -and
-			$Password -notmatch [Regex]"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,100}$"
-		)
-		{
-			$Password = $null
-		}
-	}
-	
-	Return $Password
-}
-
-
 function ConvertTo-NonBlankSpaceString
 {
 	<#
@@ -324,6 +182,148 @@ function ConvertTo-NonDiacriticalString
 	{
 		
 	}
+}
+
+
+function ConvertTo-TitleCaseString
+{
+	<#
+    .SYNOPSIS
+        Formats a String to Title Case.
+	
+	.DESCRIPTION
+		Formats a String to Title Case.
+		Sample: "fulano de tal" will be converted to "Fulano De Tal".
+
+    .PARAMETER String
+        String which will be converted.
+
+    .INPUTS
+        System.String
+			You can pipe a String to be converted.
+
+    .OUTPUTS
+        System.String
+			This function returns a converted String.
+
+    .EXAMPLE
+        ConvertTo-TitleCaseString -String "VeRy mESSY text THAT WILL Be formatted"
+
+    #>
+	
+	[CmdletBinding()]
+	[Alias("CapitalizeStuff", "Format-StringToTitleCase")]
+	[OutputType([System.String])]
+	Param (
+		[Alias("Str")]
+		[Parameter(
+				   Position = 0,
+				   Mandatory = $true,
+				   ValueFromPipeline = $true
+				   )]
+		[System.String]$String
+	)
+	
+	begin
+	{
+		$CultureTextInfo = (Get-Culture).TextInfo
+	}
+	
+	process
+	{
+		Write-Verbose -Message "Input String: '$($String)'"
+		
+		Return [System.String]$CultureTextInfo.ToTitleCase($String.ToLower())
+	}
+	
+	end
+	{
+		
+	}
+}
+
+
+function Get-RandomPassword
+{
+	<#
+    .SYNOPSIS
+        Generates a random string of characters, useful for generating passwords.
+	
+	.DESCRIPTION
+		Generates a random string of characters,
+		Useful for generating passwords.
+		Ensures that the string will contain at least one:
+		- Upper case character;
+		- Lower case character;
+		- Digit;
+
+    .PARAMETER Size
+        The length of the character string to be generated. The default is 8 characters.
+
+    .INPUTS
+        System.Int32
+			You can specify the exact size (length) of the String to be generated.
+
+    .OUTPUTS
+		System.String
+			This function returns a random generated String, with the default or specified size.
+
+    .EXAMPLE
+		Get-RandomPassword
+		
+	.EXAMPLE
+		Get-RandomPassword -Size 16
+			Generates a String with exact 16 characters.
+			
+    #>
+	
+	[CmdletBinding()]
+	[Alias("Gera-Senha")]
+	[OutputType([System.String])]
+	Param (
+		[Alias("Tamanho")]
+		[Parameter(
+				   Position = 0
+				   )]
+		[ValidateRange(4, 100)]
+		[System.Int32]$Size = 8
+	)
+	
+	while ($Password.Length -ne $Size)
+	{
+		# Generates a single character by iteration,
+		# Can be a upper case char, lower case char or a digit
+		# Then adds to the Password String.
+		
+		if (Get-Random($true, $false))
+		{
+			$GeneratedChar = [Char](Get-Random -Minimum 97 -Maximum 122)
+			
+			if (Get-Random($true, $false))
+			{
+				$GeneratedChar = ([System.String]$GeneratedChar).ToUpper()
+			}
+		}
+		else
+		{
+			$GeneratedChar = Get-Random -Maximum 9
+		}
+		
+		[System.String]$Password += $GeneratedChar
+		
+		# Verifies that Password has all three categories of character;
+		# If not, empties the variable and starts again.
+		
+		if (
+			$Password.Length -eq $Size -and
+			$Password -notmatch [Regex]"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,100}$"
+		)
+		{
+			$Password = $null
+		}
+	}
+	
+	Return $Password
 }
 
 
