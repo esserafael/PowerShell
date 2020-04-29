@@ -52,7 +52,7 @@ function Test-ADCredential
 					Mandatory = $true,
 					ValueFromPipeline = $true
 					)]
-		[System.Management.Automation.PSCredential[]]$Credential,
+		[System.Management.Automation.PSCredential]$Credential,
 		[ValidateSet("ApplicationDirectory", "Domain", "Machine")]
 		[Parameter(
 					Position = 1
