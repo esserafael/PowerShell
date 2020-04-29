@@ -72,7 +72,7 @@ function Test-ADCredential
 	{
 		Add-Type -AssemblyName System.DirectoryServices.AccountManagement -ErrorAction SilentlyContinue
 
-		if((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain)
+		if((Get-CimInstance -Class Win32_ComputerSystem).PartOfDomain)
 		{
 			$Context = "Domain"
 			$ContextOption = @("Negotiate", "Signing", "Sealing")
