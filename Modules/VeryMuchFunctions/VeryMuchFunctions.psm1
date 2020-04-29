@@ -9,7 +9,7 @@
 #>
 
 
-function ConvertTo-TitleCase
+function ConvertTo-TitleCaseString
 {
 	<#
     .SYNOPSIS
@@ -31,7 +31,7 @@ function ConvertTo-TitleCase
 			This function returns a converted String.
 
     .EXAMPLE
-        ConvertTo-TitleCase -String "VeRy mESSY text THAT WILL Be formatted"
+        ConvertTo-TitleCaseString -String "VeRy mESSY text THAT WILL Be formatted"
 
     #>
 	
