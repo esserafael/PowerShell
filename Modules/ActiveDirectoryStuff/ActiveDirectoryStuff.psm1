@@ -48,23 +48,23 @@ function Test-ADCredential
 	Param
 	(
 		[Parameter(
-				   Position = 0,
-				   Mandatory = $true,
-				   ValueFromPipeline = $true
-				   )]
+					Position = 0,
+					Mandatory = $true,
+					ValueFromPipeline = $true
+					)]
 		[System.Management.Automation.PSCredential[]]$Credential,
 		[ValidateSet("ApplicationDirectory", "Domain", "Machine")]
 		[Parameter(
-				   Position = 1
-				   )]
+					Position = 1
+					)]
 		[System.String]$Context = "Machine",
 		[Parameter(
-				   Position = 2
-				   )]
+					Position = 2
+					)]
 		[System.String]$ComputerName = $null,
 		[Parameter(
-				   Position = 3
-				   )]
+					Position = 3
+					)]
 		[Switch]$UseSSL
 	)
 	
