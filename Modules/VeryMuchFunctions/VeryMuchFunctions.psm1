@@ -39,7 +39,7 @@ function ConvertTo-NonBlankSpaceString
 
     #>
 	
-	[CmdletBinding()]	
+	[CmdletBinding()]
 	[Alias("RemSpaces", "Remove-StringBlankSpace")]
 	[OutputType([System.String])]
 	Param (
