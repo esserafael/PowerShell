@@ -11,42 +11,33 @@ function Get-ADReplication
 	.PARAMETER Target
 		The target or target Domain Controller which the function will get the statuses and results.
 
-	.PARAMETER Credential
-		Credential to be tested.
-		
-	.PARAMETER Context
-		Specifies the type of store the principal belongs: 'ApplicationDirectory', 'Domain' or 'Machine'
-		
-	.PARAMETER ComputerName
-		The name of the domain or server.
-
-	.PARAMETER UseSSL
-		Uses Secure Socket Layer (SSL) to encrypt the channel.
+	.PARAMETER All
+		Defines to get All Domain Controllers replication results.
 
 	.INPUTS
-		System.Management.Automation.PSCredential
-			You can pipe PSCredentials to be tested.
+		Object[]
+			You can pipe Objects (Domain Controllers) to the function.
 
 	.OUTPUTS
-		PSCustomObject
-			This function returns PSCustomObjects with results.
+		Microsoft.ActiveDirectory.Management.ADReplicationPartnerMetadata
+			This function returns ADReplicationPartnerMetadata objects with results.
 
 	.EXAMPLE
-		Test-ADCredential -Credential $SomeCred
-	The function will test the credential '$SomeCred'.
+		Get-ADReplication -Target "DC01"
+	The function will get the replication results from server 'DC01'.
 		
 	.EXAMPLE
-		Test-ADCredential
-	Prompt for the credentials before the test.
+		Get-ADReplication -All
+	The function will get replication results from all domain controllers in the domain.
 
 	.EXAMPLE
-		Test-ADCredential -ComputerName dc01.example.com -UseSSL
-	Will prompt for the credentials and connect to the server 'dc01.example.com' using SSL (port 636).
+		Get-ADReplication -Target "DC01", "DC03", "SERVER04"
+	The function will get the replication results from multiple domain controllers.
 
 	#>
 
 	[CmdletBinding(DefaultParameterSetName = "Single")]
-	[OutputType([PSCustomObject])]
+	[OutputType([Microsoft.ActiveDirectory.Management.ADReplicationPartnerMetadata])]
 	Param
 	(
 		[Parameter(
