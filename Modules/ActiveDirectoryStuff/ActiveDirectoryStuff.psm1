@@ -45,21 +45,29 @@ function Get-ADReplication
 
 	#>
 
-	[CmdletBinding()]
+	[CmdletBinding(DefaultParameterSetName = "Single")]
 	[OutputType([PSCustomObject])]
 	Param
 	(
 		[Parameter(
 					Position = 0,
 					Mandatory = $true,
-					ValueFromPipeline = $true
+					ValueFromPipeline = $true,
+					ParameterSetName = "Single"
 					)]
-		[Object[]]$Target
+		[Object[]]$Target,
+		[Parameter(
+					ParameterSetName = "All"
+					)]
+		[Switch]$All
 	)
 
 	begin
 	{
-
+		if ($All.IsPresent)
+		{
+			$Target = (Get-ADDomainController -Filter * | Sort-Object HostName).HostName
+		}
 	}
 
 	process
@@ -94,18 +102,11 @@ function Get-ADReplication
 				}
 			}
 			else
-			{
-				$ErrorRecord = New-Object System.Management.Automation.ErrorRecord -ArgumentList @(
-					(New-Object Microsoft.ActiveDirectory.Management.ADServerDownException -ArgumentList @(
-						"It is not possible to contact the server.", 
-						$SingleTarget
-					)), 
-					"Microsoft.ActiveDirectory.Management.ADServerDownException", 
-					21, 
+			{				
+				Write-Error -Exception (New-Object Microsoft.ActiveDirectory.Management.ADServerDownException -ArgumentList @(
+					"It is not possible to contact the server $($SingleTarget).", 
 					$SingleTarget
-				)
-				
-				Write-Error -Exception $ErrorRecord
+				))
 			}
 		}
 	}
