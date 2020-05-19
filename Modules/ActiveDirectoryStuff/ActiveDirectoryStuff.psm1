@@ -98,7 +98,7 @@ function Get-ADReplication
 				}
 				catch [Microsoft.ActiveDirectory.Management.ADServerDownException]
 				{
-					$PSCmdlet.ThrowTerminatingError($_)
+					Write-Error -Exception $_
 				}
 			}
 			else
