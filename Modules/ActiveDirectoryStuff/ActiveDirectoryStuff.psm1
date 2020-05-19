@@ -1,4 +1,121 @@
 ﻿
+function Get-ADReplication
+{
+	<#
+	.SYNOPSIS
+		Gets Active Directory Replication status and results.
+
+	.DESCRIPTION
+		Gets Active Directory Replication status and results.
+
+	.PARAMETER Target
+		The target or target Domain Controller which the function will get the statuses and results.
+
+	.PARAMETER Credential
+		Credential to be tested.
+		
+	.PARAMETER Context
+		Specifies the type of store the principal belongs: 'ApplicationDirectory', 'Domain' or 'Machine'
+		
+	.PARAMETER ComputerName
+		The name of the domain or server.
+
+	.PARAMETER UseSSL
+		Uses Secure Socket Layer (SSL) to encrypt the channel.
+
+	.INPUTS
+		System.Management.Automation.PSCredential
+			You can pipe PSCredentials to be tested.
+
+	.OUTPUTS
+		PSCustomObject
+			This function returns PSCustomObjects with results.
+
+	.EXAMPLE
+		Test-ADCredential -Credential $SomeCred
+	The function will test the credential '$SomeCred'.
+		
+	.EXAMPLE
+		Test-ADCredential
+	Prompt for the credentials before the test.
+
+	.EXAMPLE
+		Test-ADCredential -ComputerName dc01.example.com -UseSSL
+	Will prompt for the credentials and connect to the server 'dc01.example.com' using SSL (port 636).
+
+	#>
+
+	[CmdletBinding()]
+	[OutputType([PSCustomObject])]
+	Param
+	(
+		[Parameter(
+					Position = 0,
+					Mandatory = $true,
+					ValueFromPipeline = $true
+					)]
+		[Object[]]$Target
+	)
+
+	begin
+	{
+
+	}
+
+	process
+	{
+		foreach ($SingleTarget in $Target)
+		{
+			if (Test-NetConnection -ComputerName $SingleTarget -InformationLevel Quiet)
+			{
+				try
+				{
+					Get-ADReplicationPartnerMetadata -Target $SingleTarget -ErrorAction Stop | 
+					Select-Object `
+						Server,
+						@{
+							N="PartnerName"
+							E={
+								$PInvID = $_. PartnerInvocationId
+								(Get-ADDomainController -Filter {InvocationId -eq $PInvID}).HostName
+							}
+						},
+						PartnerAddress,
+						PartnerType,
+						IntersiteTransportType,
+						Writable,
+						LastReplicationAttempt,
+						LastReplicationSuccess,
+						LastReplicationResult
+				}
+				catch [Microsoft.ActiveDirectory.Management.ADServerDownException]
+				{
+					$PSCmdlet.ThrowTerminatingError($_)
+				}
+			}
+			else
+			{
+				$ErrorRecord = New-Object System.Management.Automation.ErrorRecord -ArgumentList @(
+					(New-Object Microsoft.ActiveDirectory.Management.ADServerDownException -ArgumentList @(
+						"It is not possible to contact the server.", 
+						$SingleTarget
+					)), 
+					"Microsoft.ActiveDirectory.Management.ADServerDownException", 
+					21, 
+					$SingleTarget
+				)
+				
+				Write-Error -Exception $ErrorRecord
+			}
+		}
+	}
+
+	end
+	{
+
+	}
+}
+
 function Test-ADCredential
 {
 	<#

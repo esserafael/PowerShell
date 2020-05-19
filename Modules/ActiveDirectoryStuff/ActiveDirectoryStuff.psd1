@@ -12,13 +12,20 @@
 	DotNetFrameworkVersion = '4.5'
 	CLRVersion = '4.0.0'
 	ProcessorArchitecture = 'None'
-	RequiredModules = @()
+	RequiredModules = @(
+		@{
+			ModuleName="ActiveDirectory"
+			ModuleVersion="1.0.0.0"
+			GUID="43c15630-959c-49e4-a977-758c5cc93408"
+		}
+	)
 	RequiredAssemblies = @()
 	ScriptsToProcess = @()
 	TypesToProcess = @()
 	FormatsToProcess = @()
 	NestedModules = @()
 	FunctionsToExport = @(
+		'Get-ADReplication',
 		'Test-ADCredential'
 	)
 	CmdletsToExport = @() 
