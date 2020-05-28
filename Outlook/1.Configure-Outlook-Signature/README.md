@@ -6,8 +6,8 @@ It is supposed to be used as a GPO Logon Script (User Configuration).
 
 ## Which does what
 
-  - [Set-OutlookClientSignature.ps1](https://github.com/esserafael/PowerShell/blob/master/Outlook/1.Configure-Outlook-Signature/Set-OutlookClientSignature.ps1) - The PowerShell script that does the job itself.
-  - [SignatureTemplate](https://github.com/esserafael/PowerShell/tree/master/Outlook/1.Configure-Outlook-Signature/SignatureTemplate) - This folder contain the templates for the signatures, basically a .htm and a .txt file, so it is easier to change the design if needed.
+  - [Set-OutlookClientSignature.ps1](https://github.com/esserafael/PowerShell/blob/master/Outlook/1.Configure-Outlook-Signature/Set-OutlookClientSignature.ps1): The PowerShell script that does the job itself.
+  - [SignatureTemplate](https://github.com/esserafael/PowerShell/tree/master/Outlook/1.Configure-Outlook-Signature/SignatureTemplate): This folder contain the templates for the signatures, basically a .htm and a .txt file, so it is easier to change the design if needed.
 
 ## How to use it
 
