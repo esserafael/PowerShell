@@ -1,4 +1,113 @@
 ﻿
+function Get-ADReplication
+{
+	<#
+	.SYNOPSIS
+		Gets Active Directory Replication status and results.
+
+	.DESCRIPTION
+		Gets Active Directory Replication status and results.
+
+	.PARAMETER Target
+		The target or target Domain Controller which the function will get the statuses and results.
+
+	.PARAMETER All
+		Defines to get All Domain Controllers replication results.
+
+	.INPUTS
+		Object[]
+			You can pipe Objects (Domain Controllers) to the function.
+
+	.OUTPUTS
+		Microsoft.ActiveDirectory.Management.ADReplicationPartnerMetadata
+			This function returns ADReplicationPartnerMetadata objects with results.
+
+	.EXAMPLE
+		Get-ADReplication -Target "DC01"
+	The function will get the replication results from server 'DC01'.
+		
+	.EXAMPLE
+		Get-ADReplication -All
+	The function will get replication results from all domain controllers in the domain.
+
+	.EXAMPLE
+		Get-ADReplication -Target "DC01", "DC03", "SERVER04"
+	The function will get the replication results from multiple domain controllers.
+
+	#>
+
+	[CmdletBinding(DefaultParameterSetName = "Single")]
+	[OutputType([Microsoft.ActiveDirectory.Management.ADReplicationPartnerMetadata])]
+	Param
+	(
+		[Parameter(
+					Position = 0,
+					Mandatory = $true,
+					ValueFromPipeline = $true,
+					ParameterSetName = "Single"
+					)]
+		[Object[]]$Target,
+		[Parameter(
+					ParameterSetName = "All"
+					)]
+		[Switch]$All
+	)
+
+	begin
+	{
+		if ($All.IsPresent)
+		{
+			$Target = (Get-ADDomainController -Filter * | Sort-Object HostName).HostName
+		}
+	}
+
+	process
+	{
+		foreach ($SingleTarget in $Target)
+		{
+			if (Test-NetConnection -ComputerName $SingleTarget -InformationLevel Quiet)
+			{
+				try
+				{
+					Get-ADReplicationPartnerMetadata -Target $SingleTarget -ErrorAction Stop | 
+					Select-Object `
+						Server,
+						@{
+							N="PartnerName"
+							E={
+								$PInvID = $_. PartnerInvocationId
+								(Get-ADDomainController -Filter {InvocationId -eq $PInvID}).HostName
+							}
+						},
+						PartnerAddress,
+						PartnerType,
+						IntersiteTransportType,
+						Writable,
+						LastReplicationAttempt,
+						LastReplicationSuccess,
+						LastReplicationResult
+				}
+				catch [Microsoft.ActiveDirectory.Management.ADServerDownException]
+				{
+					Write-Error -Exception $_
+				}
+			}
+			else
+			{				
+				Write-Error -Exception (New-Object Microsoft.ActiveDirectory.Management.ADServerDownException -ArgumentList @(
+					"It is not possible to contact the server $($SingleTarget).", 
+					$SingleTarget
+				))
+			}
+		}
+	}
+
+	end
+	{
+
+	}
+}
+
 function Test-ADCredential
 {
 	<#
