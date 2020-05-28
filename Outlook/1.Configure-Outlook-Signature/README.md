@@ -1,6 +1,6 @@
 # Configuring Outlook Signature Automatically
 
-The script automatically generates a default signature in Outlook (client), using Active Directory User attributes as source of information to fill in fields like fullname, department and phone.
+The script automatically generates a default signature in Outlook (client), using Active Directory user attributes as source of information to fill in fields like fullname, department and phone.
 
 It is supposed to be used as a GPO Logon Script (User Configuration).
 
@@ -19,7 +19,7 @@ It is supposed to be used as a GPO Logon Script (User Configuration).
 
 ## Bonus
 
-If you need to prevent users from adding, editing or removing the generated signature, in the Outlook Options, you can also use GPO to create and set the following Registry values as Strings:
+If you need to prevent users from adding, editing or removing the generated signature in the Outlook Options, you can also use GPO to create and set the following Registry values as Strings:
 
 `HKEY_CURRENT_USER\Software\Microsoft\Office\<OutlookVersion>\Common\MailSettings\NewSignature`
 `HKEY_CURRENT_USER\Software\Microsoft\Office\<OutlookVersion>\Common\MailSettings\ReplySignature`
