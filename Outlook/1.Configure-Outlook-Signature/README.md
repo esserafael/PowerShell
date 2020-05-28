@@ -11,10 +11,11 @@ It is supposed to be used as a GPO Logon Script (User Configuration).
 
 ## How to use it
 
-1.  Download the files and store them, as structured here (the script will search for the files in the **SignatureTemplate** folder), in a shared network location, like `\\mycompany.com\outlook`. Every user and workstation will need at least read permission.
-2.  Create a new GPO and link it where your users are in the domain.
-3.  Edit the new GPO and go to `User Configuration\Policies\Windows Settings\Scripts\Logon`, in the `PowerShell Scripts` tab, click `Add` and navigate to the network location where the script is (step 1), then select and add it.
-4.  Apply everything and you are set.
+1.  Download the files and store them, as structured here (the script will search for the files in the `SignatureTemplate` folder), in a shared network location, like `\\mycompany.com\outlook`. Every user and workstation will need at least read permission.
+2.  Edit the template files in `SignatureTemplate` folder, with your custom branding.
+3.  Create a new GPO and link it where your users are in the domain.
+4.  Edit the new GPO and go to `User Configuration\Policies\Windows Settings\Scripts\Logon`, in the `PowerShell Scripts` tab, click `Add` and navigate to the network location where the script is (step 1), then select and add it.
+5.  Apply everything and you are set.
 
 ## Bonus
 
