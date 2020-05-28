@@ -20,9 +20,9 @@ It is supposed to be used as a GPO Logon Script (User Configuration).
 
 If you need to prevent users from adding, editing or removing the generated signature, in the Outlook Options, you can also use GPO to create and set the following Registry values as Strings:
 
-```HKEY_CURRENT_USER\Software\Microsoft\Office\<OutlookVersion>\Common\MailSettings\NewSignature
-HKEY_CURRENT_USER\Software\Microsoft\Office\<OutlookVersion>\Common\MailSettings\ReplySignature```
+```HKEY_CURRENT_USER\Software\Microsoft\Office\<OutlookVersion>\Common\MailSettings\NewSignature```
+```HKEY_CURRENT_USER\Software\Microsoft\Office\<OutlookVersion>\Common\MailSettings\ReplySignature```
 
-Set the value data with the same name of the generated signature files (which will be same in every workstation).
+Set the value data with the same name of the generated signature files, ```Signature``` in this case (which will be same in every workstation).
 
 The reason why it is not implemented in the script is because with that values set, the users can't change anything about signatures in the Outlook anymore, then if you need to revoke this block or grant a user the rights to edit, you can simply set the GPP to remove the registry value when the GPO is not in effect anymore, being the result of Security Filter or Delegation.
