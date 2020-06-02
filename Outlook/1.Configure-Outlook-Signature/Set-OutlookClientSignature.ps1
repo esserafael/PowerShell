@@ -31,6 +31,9 @@ $LocalFilePaths = @("$Env:APPDATA\Microsoft\Assinaturas", "$Env:APPDATA\Microsof
 # Signature HTML template path
 $SourceFilesPath = Join-Path -Path (Split-Path -Path $Script:MyInvocation.MyCommand.Path) -ChildPath "SignatureTemplate\*"
 
+# Max COM Object creation retries
+$MaxCOMRetries = 5
+
 Write-LocalLog -Text "-> Started Outlook Signature Configuration."
 
 try
@@ -40,8 +43,24 @@ try
 }
 catch
 {
+	# In some workstations, when creating the COM object we get 0x80080005 (CO_E_SERVER_EXEC_FAILURE) exception,
+	# which can be caused by a variety of reasons, like high CPU load, COM server is currently stopping etc.
+	# So we can retry a few times again.
+
 	Write-LocalLog -Text "Error: Can't create Outlook COM Object: $($_.Exception.Message)."
-	Exit
+	Write-LocalLog -Text "Retrying $($MaxCOMRetries) times."
+
+	for ($i = 0; $i -lt $MaxCOMRetries; $i++)
+	{
+		$OutlookCOMObject = New-Object -ComObject "Outlook.Application"
+
+		if ($OutlookCOMObject)
+		{
+			Write-LocalLog -Text "Outlook COM Object created."
+			break
+		}
+		elseif ($i -eq $MaxCOMRetries-1) { Exit }
+	}	
 }
 
 # Get Outlook default profile.
