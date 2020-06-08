@@ -1,6 +1,6 @@
 @{
 	RootModule = 'ActiveDirectoryStuff.psm1'
-	ModuleVersion = '1.0.1'
+	ModuleVersion = '1.2.0'
 	GUID = 'fd25259e-9717-4a76-ad10-fb4ed108db05'
 	Author = 'Rafael Alexandre Feustel Gustmann'
 	CompanyName = ''
