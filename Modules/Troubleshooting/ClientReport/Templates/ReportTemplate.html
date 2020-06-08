@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<title>Report</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add a blue text color to links */
+        a {
+            color: black;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .atitle:hover {
+            text-decoration: none;
+        }
+
+        a:active {
+            text-decoration: none;
+        }
+
+        /* Header Bar */
+        .headerbar {
+            position: fixed;
+            margin: 0;
+            top: 0;
+            left: 0;
+            height: 48px;
+            width: 100%;
+            line-height: 48px;
+            background-color: #1E1900;
+            justify-content: center;
+            display: flex;
+            z-index: 1;
+        }
+
+        .headerbar_picme {
+            margin: 0;
+            top: 0;
+            right: 0;
+            padding: 8px;
+            height: 48px;
+            float: right;
+            transition: background-color .2s ease-in-out;
+        }
+
+        .headerbar_picme:hover {
+            background-color: #fd0;
+        }
+
+        .headerbar_picme_img {}
+
+        /* Login page */
+        .bodylogin {
+            font-family: 'Century Gothic', Helvetica, Arial, sans-serif;
+            background-color: #fd0;
+            text-align: center;
+        }
+
+        .login_outer {
+            display: table;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        .login_middle {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .login_inner {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            max-width: 440px;
+            width: calc(100% - 40px);
+            padding: 44px;
+            margin-bottom: 28px;
+            background-color: #fff;
+            -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            min-width: 320px;
+            min-height: 338px;
+            overflow: hidden
+        }
+
+        @media (max-width: 600px),
+        (max-height: 366px) {
+            .bodylogin {
+                background-color: #fff;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .login_outer {
+                position: none;
+                top: 0;
+                left: 0;
+            }
+
+            .login_middle {
+                vertical-align: top;
+            }
+
+            .login_inner {
+                padding: 24px;
+                margin-top: 0;
+                margin-bottom: 0;
+                box-shadow: none;
+                border: 0;
+            }
+        }
+
+        .imglogo {
+            width: 150px;
+            height: 114px;
+        }
+
+        /* Main */
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Century Gothic', Helvetica, Arial, sans-serif;
+            background-color: #fd0;
+            margin: 0;
+        }
+
+        /* Add padding to containers */
+        .main_outer {
+            padding-top: 48px;
+            display: table;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        .main_title {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            max-width: 90%;
+            width: 90%;
+        }
+
+        .main_inner {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            max-width: 90%;
+            width: 90%;
+            padding: 44px;
+            margin-bottom: 28px;
+            background-color: #fff;
+            -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            min-width: 320px;
+            min-height: 338px;
+            overflow: hidden
+        }
+
+        .main_rightlink {
+            float: right;
+        }
+
+        @media (max-width: 600px),
+        (max-height: 366px) {
+            .body {
+                background-color: #fff;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .main_outer {
+                position: none;
+                top: 0;
+                left: 0;
+            }
+
+            .main_middle {
+                vertical-align: top;
+            }
+
+            .main_inner {
+                padding: 24px;
+                margin-top: 0;
+                margin-bottom: 0;
+                box-shadow: none;
+                border: 0;
+            }
+
+            .main_rightlink {
+                float: right;
+                font-size: small;
+            }
+        }
+
+        /* Index Page */
+        .tiles {
+            padding: 20px;
+            height: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            /*background-color: #1fb40b;*/
+        }
+
+        .animated-tile {
+            text-align: center;
+            margin: 10px;
+            padding: 5px;
+            position: relative;
+            -webkit-animation: all 50ms cubic-bezier(.1, .9, .2, 1);
+            animation: all 50ms cubic-bezier(.1, .9, .2, 1);
+            float: left;
+            display: inline-block;
+            transition: outline .125s ease-in-out, transform 0.125s ease-in-out, -webkit-transform .125s ease-in-out;
+            transition: background-color .1s ease-in,
+                height .1s ease-in-out;
+            height: 130px;
+            width: 130px;
+            /*background-color:#fd0*/
+        }
+
+        .animated-tile:hover {
+            height: 140px;
+            -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background-color: whitesmoke
+        }
+
+        /*.animated-tile:hover .img-create {
+        transition: width .1s
+            ease-in-out,
+                    height .1s
+            ease-in-out;
+        height: 67px;
+        width: 73px;
+    }*/
+
+        .tile-img {
+            padding: 7%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .img-create {
+            height: 64px;
+            width: 70px;
+        }
+
+        .tile-name {
+            position: absolute;
+            bottom: 0;
+            padding: 5%;
+            width: 90%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+            background-color: white;
+            width: 85%;
+            margin: auto;
+        }
+
+        /* Full-width input fields */
+        input[type=text],
+        input[type=password] {
+            font-family: 'NeoSansStd-Regular', Helvetica, Arial, sans-serif;
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        select {
+            font-family: 'NeoSansStd-Regular', Helvetica, Arial, sans-serif;
+            padding: 5px;
+            margin: 5px 0 22px;
+            display: inline-block;
+            background: #f1f1f1;
+        }
+
+        select:focus {
+            background-color: #ddd;
+            font-family: 'NeoSansStd-Regular', Helvetica, Arial, sans-serif;
+            padding: 5px;
+            margin: 5px 0 22px;
+            display: inline-block;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* Add padding to containers */
+        .bt {
+            padding: 0;
+        }
+
+        /* Set a style for the submit button */
+        .btn {
+            font-family: 'NeoSansStd-Regular', Helvetica, Arial, sans-serif;
+            font-size: x-large;
+            background-color: #1fb40b;
+            color: white;
+            display: block;
+            margin: 0 auto;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 75%;
+            opacity: 0.9;
+        }
+
+        .btn:hover {
+            opacity: 1;
+        }
+
+        .save {
+            text-align: center;
+        }
+
+        table {
+            font-family: 'NeoSansStd-Regular', Helvetica, Arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+            margin: auto;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .td-left {
+            text-align: right;
+            width: 30%;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        /* Set a grey background color and center the text of the "sign in" section */
+        .signin {
+            background-color: black;
+            text-align: center;
+        }
+
+        /* Alert message */
+
+        .alert {
+            position: absolute;
+            width: 100%;
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .alert.success {
+            background-color: #4CAF50;
+        }
+
+        .alert.info {
+            background-color: #2196F3;
+        }
+
+        .alert.warning {
+            background-color: #ff9800;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover {
+            color: black;
+        }
+
+        /* Footer */
+
+        .footer {
+            text-align: center;
+            font-size: small;
+        }
+    </style>
+    <script>
+        function alert_user(message) {
+            alert(message);
+        }
+    </script>
+</head>
+
+<body onload="load_alert(); close_alert()">
+    <div class="headerbar">
+        <a href="https://www.uniasselvi.com.br">
+            <div class="headerbar_picme">
+                <img class="headerbar_picme_img" id="profileImage"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAFcElEQVRYhc3Ya4yeVREH8N+7u7gRuZdeoEXLVQsiSTFcvVSplBBIIxJBroJBMEYDWIh8AFFJ0CoGhBBAkERCQ0MgqFVB7lAIN1sMtkALtkspS0upIBYtz7Hrh5mH9903S93dvg38v5w5c84z55k5c+bMnEYplQ8YtsGhmIo9MR47YVusx6vox3IswmN4ofEBUaQHx+PrmIbuEX7/6PutSA8uwPex5SbIWd3Tmf8ZFU7CNfjIEGMD+BueRh/W4G2xU9thIqbg08LlNmxMkSk4ONtJ+cEWqLAWLwkfnZ+LDRdjcGf+RDsewK/xW/xzmPKOxEHtrrUnvoVjscsIfu45zMG1WL2ReQfjfvS28W/F97CihbcVDsRu4sB/GEUYcTmexCv15FqRKbgKXxzBz78Xfodz8WIb/+gca8USfBmLs78dvomvYv9hrNUndve6RinVbJw3xKR+3IeF+LuwxH+ENccLS03FYcJd2vEznJ/0EfhT2/gvxC7A1rgMZwzj54fCqkYpVT8mtDBvwc/xlxEI+mz+1Mw2/j34iXC7cS38mZq7czJ+M4TMd4T7LMLL4sx0Y3vsjgOyhVcbpVQrsTN+j9NFhKixLz6HPYTVe8WltBrPi8O5tGX+JPxSuMt74QjclfSN4u5oxWO4HPOwbiNypCLnycPejx/j6hwch1k4RbjQ/0OfiDRX4M3kHS4s3n6oTxXWbwi3ndYytlTszuPDWLMdvY1SqskiChB+eu4oBNX4EX6Q9ERh3UnZvwJnJz1fpCE1Lsc5m7Duu1Hr48JCO7eNrxfh8gkRGt8Sd8kE7IcZGNv2zVpMF0FiHFbhdeyY49cZfKi/rekNo0YPPoOH2/jLhLvNSWU2hhn4qVAMdsACEW7n4RhNFzvWYCVm6YASxI4sERdhje/iylHIOkNYuxVfEAGBMNpSTM7+HJw4inWGRGvUWo/PG91hq3GYCLk1lgm3rUTGUFt/FT6BNzZhrUHoEnFZCt4UJeBecUnW2BUXJ31mC/8iHVSCUOR1YcnlHZK5UITuGieIG/6T2X8JN3RorXfRKKU6FI90WjBuFxfjgEj2tkj+ZeKQdxSbs7Caaug050sGn6OOoKvTAluwAH9s4/3LyHK4YWNzV4izRbK3SqToz+Ifm2Oh97tm7xh6xI08Bq9lf1tRL4/BR0W+tKMovp4RNcl+IjNdmP2J+FTOrS2+U/LW5LwNIhxPwUr8NdfYV9xh3dm+IC7NseICXYa98tsVKWeSiH5FZMBrlVI9X0o1UEr1ZClVX9InlFLdmvQlpVTXJn1pKdXpSQ+UUu1aSqWU6ubsn5/9saVU/S3zLkheaeGdWUo1vaU/UEq1rpRqZinV0uxfk/LmZv/+Uqo7k76tlOr6pFd24Q9pwYdzV+COtAxRo2yV9DN4KOnn0lpEJGpvJ4hca0nu9HFp9bmi+twjd0Va+kZREizIb4iEFW7Kdo2og+T8Pyf9VE+6g9zGA/Fv8fTycvIniAqwnlMrWNfkR2tmwNPzZ+dn/yjhCos1b/Kv4L+ifH4tldoFXxOp/QrNgqpWdF7KnJHz30zeATm+qMvgyLVB8+LaJvtzNV9UGi1zB7Kty9ta8bOE/84Vyec7ok5ZLCz7K5EN1ylLd865Dx9LXsl2H9yNvVPG1uK8zMnx+k2s0aWZpl8oUvp6Ww8X98yzmi70hmZVN1E8sn1DBIfZyZ8lSoDjxEtIr3CHmaICrFOVPpEdjxMuM15kA9OE2xEPFNOFR9ytiXnZHpPtkV24DTeLKAPfybauIfrww6TXab6YvCUiDuEOvWLLJ+NBXIpDROZ7iXhVfCJ/ag1O0/SGD6XSfeI8DqSsHXK83v17hNs/kP367Hb/D4VRDkMRAViGAAAAAElFTkSuQmCC">
+            </div>
+        </a>
+    </div>
+    <div class="main_outer">
+        <div class="main_title">
+            <h1><a class="atitle" href="/">ADRH on the Web</a></h1>
+        </div>
+        <div class="main_inner">
+            <h2>Criação de Nova Conta</h2>
+            <hr>
+
+            <p class="save">Conta criada com sucesso!</p>
+            <p class="save">O resultado da criação será enviado para o seu e-mail, em breve.</p>
+
+
+            <table>
+
+                <tr>
+                    <td class="td-left">Nome</td>
+                    <td style="width: 70%;">Rafael Alexandre</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">Sobrenome</td>
+                    <td style="width: 70%;">Gustmann</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">CPF</td>
+                    <td style="width: 70%;">075.745.349-00</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">E-mail</td>
+                    <td style="width: 70%;">esserafael@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">Departamento</td>
+                    <td style="width: 70%;">Tec</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">Gestor</td>
+                    <td style="width: 70%;">Tec</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">Permissão</td>
+                    <td style="width: 70%;">volvo</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">Celular</td>
+                    <td style="width: 70%;">Tec</td>
+                </tr>
+
+                <tr>
+                    <td class="td-left">E-mail alternativo</td>
+                    <td style="width: 70%;">Tec</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="main_title">
+            <footer class="footer">Uniasselvi Client Report Tool</footer>
+            <footer class="footer">Powered by PowerShell</footer>
+        </div>
+    </div>
+</body>
+
+</html>
