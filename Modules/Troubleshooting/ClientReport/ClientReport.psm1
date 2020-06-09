@@ -61,7 +61,7 @@ function Test-InternetConnection
 		$InternetConnTestResult = @()
 		$InternetConnTestResult += Test-NetConnection
 
-		foreach ($Address in $Global:DefaultConfig.InternetAddressesToTest)
+		foreach ($Address in $DefaultConfig.InternetAddressesToTest)
 		{
 			$InternetConnTestResult += Test-NetConnection -ComputerName $Address
 		}
