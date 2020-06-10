@@ -125,7 +125,3 @@ function Test-InternetConnection
 
 	}
 }
-
-. .\Modules\Troubleshooting\ClientReport\ClientReport-Config.ps1
-
-ConvertTo-HtmlReport
