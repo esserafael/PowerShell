@@ -12,9 +12,7 @@ function ConvertTo-HtmlReport
 	[CmdletBinding()]
 	[OutputType([String])]
 	Param
-	(
-		[String]$Path = "C:\Users\Feustel\Documents\HtmlResult.html"
-	)
+	()
 
 	begin
 	{
@@ -57,9 +55,7 @@ function Get-ClientInfo
 	[CmdletBinding()]
 	[OutputType([PSCustomObject])]
 	Param
-	(
-
-	)
+	()
 
 	begin
 	{
@@ -68,12 +64,12 @@ function Get-ClientInfo
 
 	process
 	{
-		$EnclosureInfo = Get-CimInstance -ClassName Win32_SystemEnclosure
-		$ComputerSystemInfo = Get-CimInstance -ClassName CIM_ComputerSystem
-		$ProcessorInfo = Get-CimInstance -ClassName Win32_Processor
-		$PhysicalMemInfo = Get-CimInstance -class Win32_PhysicalMemory
-
-		#Return [PSCustomObject]([ordered]@{}
+		Return [PSCustomObject]@{
+			"Encloure" = Get-CimInstance -ClassName Win32_SystemEnclosure
+			"System" = Get-CimInstance -ClassName Win32_ComputerSystem
+			"Processor" = Get-CimInstance -ClassName Win32_Processor
+			"Memory" = Get-CimInstance -class Win32_PhysicalMemory
+		}
 	}
 
 	end
@@ -96,9 +92,7 @@ function Test-InternetConnection
 	[CmdletBinding()]
 	[OutputType([PSCustomObject])]
 	Param
-	(
-
-	)
+	()
 
 	begin
 	{
