@@ -15,6 +15,7 @@
 	RequiredModules = @(
 		@{
 			ModuleName="VeryMuchFunctions"
+			ModuleVersion="1.0.5"
 			GUID="f4c2f5df-625b-4f15-af72-fbd3d8b534ff"
 		}
 	)
