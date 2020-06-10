@@ -14,10 +14,10 @@
 @{
 	
 	# Script module or binary module file associated with this manifest
-	RootModule = 'VeryMuchFunctions2.psm1'
+	RootModule = 'VeryMuchFunctions.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '1.0.5.0'
+	ModuleVersion = '1.0.5'
 	
 	# ID used to uniquely identify this module
 	GUID = 'f4c2f5df-625b-4f15-af72-fbd3d8b534ff'
@@ -107,7 +107,7 @@
 			# Tags = @()
 			
 			# A URL to the license for this module.
-			# LicenseUri = ''
+			LicenseUri = 'https://github.com/esserafael/PowerShell/blob/master/LICENSE'
 			
 			# A URL to the main website for this project.
 			ProjectUri = 'https://github.com/esserafael/PowerShell'
