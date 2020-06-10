@@ -1,17 +1,4 @@
-﻿<#	
-	===========================================================================
-	 Created on:   	29/10/2019 09:48
-	 Created by:   	Rafael Alexandre Feustel Gustmann - esserafael@gmail.com
-	 Filename:     	VeryMuchFunctions.psd1
-	 -------------------------------------------------------------------------
-	 Module Manifest
-	-------------------------------------------------------------------------
-	 Module Name: VeryMuchFunctions
-	===========================================================================
-#>
-
-
-@{
+﻿@{
 	
 	# Script module or binary module file associated with this manifest
 	RootModule = 'VeryMuchFunctions.psm1'
@@ -83,13 +70,13 @@
 	) #For performanace, list functions explicity
 	
 	# Cmdlets to export from this module
-	CmdletsToExport = '*' 
+	CmdletsToExport = @() 
 	
 	# Variables to export from this module
 	VariablesToExport = '*'
 	
 	# Aliases to export from this module
-	AliasesToExport = '*' #For performanace, list alias explicity
+	AliasesToExport = @() #For performanace, list alias explicity
 	
 	# List of all modules packaged with this module
 	ModuleList = @()
