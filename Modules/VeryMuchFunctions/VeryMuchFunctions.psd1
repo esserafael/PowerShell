@@ -62,10 +62,10 @@
 	
 	# Functions to export from this module
 	FunctionsToExport = @(
-		'Format-StringToTitleCase',
-		'Get-RandomPassword',
-		'Remove-StringBlankSpace',
-		'Remove-StringDiacritic',
+		'ConvertTo-NonBlankSpaceString',
+		'ConvertTo-NonDiacriticalString',
+		'ConvertTo-TitleCaseString',
+		'Get-RandomPassword',		
 		'Write-Log'
 	) #For performanace, list functions explicity
 	
@@ -76,7 +76,15 @@
 	VariablesToExport = '*'
 	
 	# Aliases to export from this module
-	AliasesToExport = @() #For performanace, list alias explicity
+	AliasesToExport = @(
+		'CapitalizeStuff',
+		'Format-StringToTitleCase',
+		'Gera-Senha',
+		'Remove-Diacritics',
+		'Remove-StringBlankSpace',
+		'Remove-StringDiacritic',
+		'RemSpaces'
+	) #For performanace, list alias explicity
 	
 	# List of all modules packaged with this module
 	ModuleList = @()
