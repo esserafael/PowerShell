@@ -28,6 +28,7 @@
 	)
 	FunctionsToExport = @(
 		'ConvertTo-HtmlReport',
+		'Get-ClientInfo',
 		'Test-InternetConnection'
 	)
 	CmdletsToExport = @() 
