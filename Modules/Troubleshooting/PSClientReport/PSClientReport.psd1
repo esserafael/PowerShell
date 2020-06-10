@@ -1,26 +1,32 @@
 @{
-	RootModule = 'ClientReport.psm1'
+	RootModule = 'PSClientReport.psm1'
 	ModuleVersion = '0.0.1'
 	GUID = '9f9aa31b-3fbb-48c5-9f74-8283d3b15cee'
 	Author = 'Rafael Alexandre Feustel Gustmann'
 	CompanyName = ''
 	Copyright = ''
-	Description = 'A bunch of functions to help troubleshoot basic Windows configurations.'
+	Description = 'A bunch of functions to help troubleshoot basic Windows client configurations.'
 	PowerShellVersion = '5.0'
 	PowerShellHostName = ''
 	PowerShellHostVersion = ''
 	DotNetFrameworkVersion = '4.5'
 	CLRVersion = '4.0.0'
 	ProcessorArchitecture = 'None'
-	RequiredModules = @()
+	RequiredModules = @(
+		@{
+			ModuleName="VeryMuchFunctions"
+			GUID="f4c2f5df-625b-4f15-af72-fbd3d8b534ff"
+		}
+	)
 	RequiredAssemblies = @()
 	ScriptsToProcess = @()
 	TypesToProcess = @()
 	FormatsToProcess = @()
 	NestedModules = @(
-		"ClientReport-Config.ps1"
+		"PSClientReport-Config.ps1"
 	)
 	FunctionsToExport = @(
+		'ConvertTo-HtmlReport',
 		'Test-InternetConnection'
 	)
 	CmdletsToExport = @() 
