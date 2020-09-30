@@ -12,6 +12,7 @@
 
 function New-RunSpace
 {
+	[CmdletBinding(SupportsShouldProcess=$true)]
 	Param (
 		[String]$Id,
 		[Int32]$IntervalTime
@@ -150,7 +151,7 @@ $CountersKeys | ForEach-Object {
 }
 
 # Gerencia e mantém os runspaces executando.
-while ($RunSpaces.Status -ne $null)
+while ($null -ne $RunSpaces.Status)
 {
 	$CompletedRunSpaces = $RunSpaces | Where-Object { $_.Status.IsCompleted -eq $true }
 	foreach ($RunSpace in $CompletedRunSpaces)
